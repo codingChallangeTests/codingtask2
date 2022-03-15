@@ -26,3 +26,19 @@ Implement a `merge` function that:
 - The code / build is run via one of the following methods:
     - a Linux machine with python 3.10
     - via docker
+
+## local build
+
+use the provided `.envrc` or manualy create the venv
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+pip3 install --requirement requirements.txt
+pip3 install --requirement test-requirements.txt
+```
+
+### unit tests ###
+```sh
+tox
+```
