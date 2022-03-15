@@ -15,7 +15,14 @@ def merge(intervals):
     if len(intervals) == 0:
         return []
 
+    # python uses Timsort
+    # worst case performance O(n log n)
+    # worst case memory O(n)
     sorted_intervals = sorted(intervals, key=lambda d: d[0])
+
+    # compare sorted interval neighbors to merge them if possible
+    # performance O(n)
+    # Worst-case memory O(n*2) sorted_data + out (Worst-case no merges)
     step = sorted_intervals[0]
     for interval in sorted_intervals:
         if type(interval[0]) not in (float, int) or type(interval[1]) not in (float, int):

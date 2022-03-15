@@ -85,3 +85,27 @@ docker build . -t codingtask2
 docker run -ti codingtask2:latest -h
 docker run -ti -v "$(pwd)/example_data.json":/app/test.json codingtask2:latest -f test.json
 ```
+
+## performance ##
+
+the `merge` function consists of 2 parts
+1. a Timsort with a worst case performance if O(n log n) and worst case memory of O(n)
+2. the merging which has a performance of O(n) and worst case memory of O(n*2)
+
+## Bigdata
+
+its possible to process more data then can fit in the Memmory, but this where out of scope for this code.
+
+### Basic workflow ###
+ - split data in to chunks that fit in to Memory and leaf space for a sort
+ - create work packages out of the split data
+ - may distribute work packages to multible machines
+ - for each work packages sort the intervals
+ - may do the first merge round (needs performance testing, if this increasses the performance depends on the parrallel workers that can run)
+ - store work packages results
+ - load each work packages result as steam and sort and merge the incomming data and provide a output stream
+ - store output stream
+
+### TODOs ###
+ - rethink language for big data
+    - for big amounts of data it makes sense to go to a compiled language
