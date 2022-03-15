@@ -13,7 +13,7 @@ Implement a `merge` function that:
 
 ## Assumptions
 
-- The focus is on the `merge` function and the providing as a python module testing of it
+- The focus is on the `merge` function and the providing as a python module and the testing of it
 - That the order of the intervals in the output is not relevant
 - All other code is only for support and showcasing and will not be unit tested
 - The input dataset (intervals) will fit in to Memory with free Memory to work on the dataset is left over after loading
@@ -41,4 +41,47 @@ pip3 install --requirement test-requirements.txt
 ### unit tests ###
 ```sh
 tox
+```
+
+### build module ###
+```sh
+python3 setup.py sdist
+```
+
+## Examples
+
+### usage as module
+```py
+from codingtask2.merge import merge
+
+datain = [[25,30], [2,19], [14, 23], [4,8]]
+out = merge(datain)
+print(out)
+```
+
+### demo code
+
+the file `example_merge.py` implements a example
+and can read JSON from a file and output the result to stdout as JSON
+
+#### setup ####
+Note: this steps are currently optional since the code has no external requiremets
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate
+pip3 install --requirement requirements.txt
+```
+
+#### run ####
+```sh
+python3 example_merge.py -f example_data.json
+```
+
+### Docker build and run
+
+```sh
+docker build . -t codingtask2
+docker run -ti codingtask2:latest -h
+docker run -ti -v "$(pwd)/example_data.json":/app/test.json codingtask2:latest -f test.json
 ```
